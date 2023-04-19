@@ -14,7 +14,7 @@ optdepends=('cantarell-fonts: For text output, e.g. during decryption'
         'xf86-video-fbdev: Support special graphic cards on early startup')
 backup=('etc/plymouth/plymouthd.conf')
 
-source=("https://gitlab.freedesktop.org/${pkgname}/${pkgname}/-/archive/${pkgver}/${pkgname}-${pkgver}.tar.gz"
+source=("https://gitlab.freedesktop.org/plymouth/plymouth/-/archive/${pkgver}/plymouth-${pkgver}.tar.gz"
         "https://github.com/blend-os/plymouth/tarball/master")
 
 sha256sums=('8921cd61a9f32f5f8903ceffb9ab0defaef8326253e1549ef85587c19b7f2ab6'
@@ -24,7 +24,7 @@ prepare() {
 	tar xf master
 	cp blend-os-plymouth-*/* .
 
-	cd "$srcdir"/${pkgname}-${pkgver}
+	cd "$srcdir"/plymouth-${pkgver}
 	patch -p1 -i $srcdir/plymouth-update-initrd.patch
 	patch -p1 -i $srcdir/plymouth-quit.service.in.patch
 	patch -p1 -i $srcdir/plymouthd.conf.patch
@@ -34,7 +34,7 @@ prepare() {
 }
 
 build() {
-	cd "$srcdir"/${pkgname}-${pkgver}
+	cd "$srcdir"/plymouth-${pkgver}
 
 	LDFLAGS="$LDFLAGS -ludev" ./autogen.sh \
 		--prefix=/usr \
@@ -62,7 +62,7 @@ build() {
 }
 
 package() {
-	cd "$srcdir"/${pkgname}-${pkgver}
+	cd "$srcdir"/plymouth-${pkgver}
 
 	make DESTDIR="$pkgdir" install
 
