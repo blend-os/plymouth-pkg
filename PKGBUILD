@@ -1,9 +1,11 @@
-pkgname=plymouth
+pkgname=plymouth-blend
 pkgver=22.02.122
 pkgrel=9
 pkgdesc="A graphical boot splash screen with kernel mode-setting support"
 url="https://www.freedesktop.org/wiki/Software/Plymouth/"
 arch=('i686' 'x86_64')
+provides=('plymouth')
+conflicts=('plymouth')
 license=('GPL')
 
 depends=('libdrm' 'pango' 'systemd')
